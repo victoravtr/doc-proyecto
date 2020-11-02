@@ -1,16 +1,13 @@
 ---
-title: "First_post"
+title: "Documentacion"
 date: 2020-11-02T12:39:37+01:00
 draft: false
-subtitle: "Primer post"
+subtitle: "Documentacion de la aplicacion"
 author: "victorav"
 authorLink: "https://victorav.me"
-description: "Primer post de ejemplo"
+description: "Documentacion de la aplicacion"
 tags: ["prueba", "first-post"]
 categories: ["example"]
-hiddenFromHomePage: true
-hiddenFromSearch: false
 twemoji: true
 linkToMarkdown: true
 ---
-
