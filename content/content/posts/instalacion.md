@@ -12,26 +12,26 @@ twemoji: true
 linkToMarkdown: true
 ---
 
-# GUÍA DE INSTALACIÓN
-
+Guía de instalación paso a paso del programa
+<!--more-->
 ## Requisitos iniciales
 
 - Servidor Debian/Ubuntu en el que se realizará la instalación _(En este ejemplo se usará Debian GNU/Linux 10 buster)_
 - Usuario capaz de ejecutar comandos con sudo.
 - Conexión a Internet
 - Git _(Si se quiere descargar el programa directamente desde los repositorios)_
-
+___
 ## Pasos para realizar la instalación
 
-## 1. Descarga
+### 1. Descarga
 Lo primero que tenemos que hacer es descargar en el servidor los archivos del programa con el método que veamos más conveniente: scp, ftp, git...
 Por ejemplo, si quisiesemos descargarlo con git tendríamos que ejecutar el siguiente comando:
 ```bash
 git clone https://github.com/victoravtr/Proyecto.git
 ```
 ![git clone](/images/instalacion/git_clone.png)
-
-## 2. MYSQL
+___
+### 2. MYSQL
 Aunque el programa ofrece la opción de realizar una instalación de forma automática, la instalación de mysql debe realizarla el propio usuario.
 Se haría de la siguiente manera:
 1. Primero, instalamos maria-db con apt
@@ -74,15 +74,14 @@ GRANT ALL PRIVILEGES ON proyecto_db.* TO 'proyecto'@'%';
 FLUSH PRIVILEGES;
 ```
 ![configuracion mysql](/images/instalacion/mysql_configure.png)
-
-## 3. Instalación
+___
+### 3. Instalación
 
 Tenemos 2 opciones para instalar el programa: la forma manual y la forma automática.
 
-### 3.1 Instalación manual(No recomendado)
+#### 3.1 Instalación manual(No recomendado)
 
 Para realizar la instalación manual tenemos que instalar todos los componentes que necesita el programa, crear la estructura de carpetas que se va a necesitar y configurar los distintos archivos que necesita el programa:
-#### 3.1.1 Instalación de componentes
 
 Se necesita:
 
@@ -142,12 +141,30 @@ apt install php-mysqli
 ##### mariadb-server - [mariadb.org](https://mariadb.org/)
 El sistema de gestión de bases de datos que usaremos.
 
-#### 3.1.2 Estructura de carpetas
-Carpetas que debemos crear y archivos que tenemos que copiar en ellas:
+___
 
+Además, necesitas crear el sistema de carpetas que el programa va a utilizar y colocar en ellas los archivos requeridos:
+
+- /etc/proyecto
+
+- /etc/proyecto/apache/
+  - Dentro del directorio se debe colocar el archivo proyecto.conf
+
+- /etc/proyecto/general
+  - Dentro del directorio se debe colocar el archivo exe_switch
+
+- /etc/proyecto/mysql/
+  - Dentro del directorio se deben colocar los archivos db_config.conf y init_db.sql
+
+- /etc/proyecto/zabbix/
+  - Dentro del directorio se deben colocar los archivos zabbix_agentd.conf, zabbix_agentd32.exe y zabbix_agentd64.exe
+
+- /var/www/proyecto
+    - Dentro del directorio se deben colocar todos los archivos que están en el interior de la carpeta Web-Proyecto-Content
+___
 #### 3.1.3 Archivos de configuración
-
-### 3.2 Instalación automática(Recomendado)
+___
+#### 3.2 Instalación automática(Recomendado)
 Una vez hayamos descargado el programa solo tenemos que entrar en la carpeta "Proyecto" y ejecutar el script install.sh como sudo.
 ```bash
 cd Proyecto
