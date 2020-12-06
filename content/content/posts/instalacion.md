@@ -162,7 +162,28 @@ Además, necesitas crear el sistema de carpetas que el programa va a utilizar y 
 - /var/www/proyecto
     - Dentro del directorio se deben colocar todos los archivos que están en el interior de la carpeta Web-Proyecto-Content
 ___
-#### 3.1.3 Archivos de configuración
+
+Por último, debes editar una serie de archivos para asegurar el correcto funcionamiento del programa:
+
+Apache:
+- Copiar archivo /etc/proyecto/apache/proyecto.conf en /etc/apache2/sites-available/proyecto.conf
+- Situarnos en el directorio /etc/apache2/sites-available/ y ejecutar los siguientes comandos:
+```bash
+sudo a2dissite 000-default.conf
+```
+```bash
+sudo a2enssite proyecto.conf
+```
+```bash
+sudo service apache2 restart
+```
+
+Hosts:
+- /etc/hosts
+PHP:
+- /etc/php/7.3/apache2/php.ini
+MYSQL:
+- /etc/proyecto/mysql/db_config.conf
 ___
 #### 3.2 Instalación automática(Recomendado)
 Una vez hayamos descargado el programa solo tenemos que entrar en la carpeta "Proyecto" y ejecutar el script install.sh como sudo.
