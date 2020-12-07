@@ -3,5 +3,33 @@
         <title>Tags - Etiqueta - Documentación</title>
         <link>http://example.org/tags/</link>
         <description>Tags - Etiqueta - Documentación</description>
-        <generator>Hugo -- gohugo.io</generator><language>es</language><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /></channel>
+        <generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>documentacion</title>
+    <link>http://example.org/tags/documentacion/</link>
+    <pubDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</pubDate>
+    <author>Autor</author>
+    <guid>http://example.org/tags/documentacion/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>guia</title>
+    <link>http://example.org/tags/guia/</link>
+    <pubDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</pubDate>
+    <author>Autor</author>
+    <guid>http://example.org/tags/guia/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>instalacion</title>
+    <link>http://example.org/tags/instalacion/</link>
+    <pubDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</pubDate>
+    <author>Autor</author>
+    <guid>http://example.org/tags/instalacion/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>uso</title>
+    <link>http://example.org/tags/uso/</link>
+    <pubDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</pubDate>
+    <author>Autor</author>
+    <guid>http://example.org/tags/uso/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
 </rss>

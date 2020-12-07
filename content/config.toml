@@ -1,4 +1,5 @@
-baseURL = "http://example.org/"
+baseURL = "https://victoravtr.github.io/"
+publishDir = "docs"
 # [en, zh-cn, fr, ...] determines default content language
 defaultContentLanguage = "es"
 # language code

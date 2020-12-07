@@ -1,11 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Documentación</title>
-        <link>http://example.org/</link>
-        <description>Documentación</description>
-        <generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</lastBuildDate>
-            <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
-        <item>
+        <title>documentacion - Etiqueta - Documentación</title>
+        <link>http://example.org/tags/documentacion/</link>
+        <description>documentacion - Etiqueta - Documentación</description>
+        <generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</lastBuildDate><atom:link href="http://example.org/tags/documentacion/" rel="self" type="application/rss+xml" /><item>
     <title>How-To</title>
     <link>http://example.org/posts/guia_uso/</link>
     <pubDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</pubDate>

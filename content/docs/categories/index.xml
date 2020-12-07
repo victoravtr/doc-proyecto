@@ -3,5 +3,12 @@
         <title>Categories - Categoría - Documentación</title>
         <link>http://example.org/categories/</link>
         <description>Categories - Categoría - Documentación</description>
-        <generator>Hugo -- gohugo.io</generator><language>es</language><atom:link href="http://example.org/categories/" rel="self" type="application/rss+xml" /></channel>
+        <generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</lastBuildDate><atom:link href="http://example.org/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>documentacion</title>
+    <link>http://example.org/categories/documentacion/</link>
+    <pubDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</pubDate>
+    <author>Autor</author>
+    <guid>http://example.org/categories/documentacion/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
 </rss>
