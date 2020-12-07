@@ -67,7 +67,7 @@ Rellenamos los datos del cliente, los datos del controlador de dominio y le damo
 Desde aquí podemos instalar software en equipos.
 Rellenamos los datos, le damos a Examinar para escoger el instalador y le damos al botón _"Añadir"_. El programa intentará ejecutar el instalador en el cliente y mostrará el resultado en la columna _"Output"_.
 
-// TODO: incluir soft.png
+![Software](/images/uso/soft.png)
 {{< style "strong{color: red;}" >}}
 **!!! IMPORTANTE** 
 {{< /style >}}
