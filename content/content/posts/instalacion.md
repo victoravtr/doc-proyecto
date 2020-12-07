@@ -172,26 +172,26 @@ Además, necesitas crear el sistema de carpetas que el programa va a utilizar y 
 - /etc/proyecto
 
 - /etc/proyecto/apache/
-  - Dentro del directorio se debe colocar el archivo proyecto.conf
+  - Dentro del directorio se debe colocar el archivo _proyecto.conf_
 
 - /etc/proyecto/general
-  - Dentro del directorio se debe colocar el archivo exe_switch
+  - Dentro del directorio se debe colocar el archivo _exe_switch_
 
 - /etc/proyecto/mysql/
-  - Dentro del directorio se deben colocar los archivos db_config.conf y init_db.sql
+  - Dentro del directorio se deben colocar los archivos _db_config.conf_ y _init_db.sql_
 
 - /etc/proyecto/zabbix/
-  - Dentro del directorio se deben colocar los archivos zabbix_agentd.conf, zabbix_agentd32.exe y zabbix_agentd64.exe
+  - Dentro del directorio se deben colocar los archivos _zabbix_agentd.conf_, _zabbix_agentd32.exe_ y _zabbix_agentd64.exe_
 
 - /var/www/proyecto
-    - Dentro del directorio se deben colocar todos los archivos que están en el interior de la carpeta Web-Proyecto-Content
+    - Dentro del directorio se deben colocar todos los archivos que están en el interior de la carpeta _Web-Proyecto-Content_
 ___
 
 Por último, debes editar una serie de archivos para asegurar el correcto funcionamiento del programa:
 
 Apache:
-- Copiar archivo /etc/proyecto/apache/proyecto.conf en /etc/apache2/sites-available/proyecto.conf
-- Situarnos en el directorio /etc/apache2/sites-available/ y ejecutar los siguientes comandos:
+- Copiar archivo _/etc/proyecto/apache/proyecto.conf_ en _/etc/apache2/sites-available/proyecto.conf_
+- Situarnos en el directorio _/etc/apache2/sites-available/_ y ejecutar los siguientes comandos:
 ```bash
 sudo a2dissite 000-default.conf
 ```
@@ -338,6 +338,16 @@ winrm get winrm/config/client
 ![Configuracion winrm](/images/instalacion/winrm_config.png)
 
 ### Configuración clientes Linux
+
 #### Configuración ssh
-- Debian
-- Ubuntu
+
+##### Debian/Ubuntu
+
+La instalación del servidor ssh es la misma en Debian que en Ubuntu:
+- Lo instalamos con el siguiente comando:
+```bash
+sudo apt install openssh-server
+```
+
+* Si queremos conectarnos con el usuario root tenemos que editar el archivo _/etc/ssh/sshd_config_ y cambiar la línea _"#PermitRootLogin prohibit-password
+"_ por _"PermitRootLogin yes"_
