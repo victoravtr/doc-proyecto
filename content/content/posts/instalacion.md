@@ -1,6 +1,6 @@
 ---
 title: "Instalacion"
-date: 2020-11-02T12:39:37+01:00
+date: 2020-12-02T12:39:37+01:00
 draft: false
 subtitle: "Guia de instalacion"
 author: "victorav"
@@ -30,6 +30,14 @@ Por ejemplo, si quisiesemos descargarlo con git tendríamos que ejecutar el sigu
 git clone https://github.com/victoravtr/Proyecto.git
 ```
 ![git clone](/images/instalacion/git_clone.png)
+
+Además, también tenemos que descargar el repositorio que contiene la webshell:
+```bash
+git clone https://github.com/billchurch/webssh2.git
+```
+```bash
+cp -r webssh2/ /var/www/
+```
 ___
 ### 2. MYSQL
 Aunque el programa ofrece la opción de realizar una instalación de forma automática, la instalación de mysql debe realizarla el propio usuario.
@@ -79,12 +87,28 @@ ___
 
 Tenemos 2 opciones para instalar el programa: la forma manual y la forma automática.
 
-#### 3.1 Instalación manual(No recomendado)
+___
+#### 3.1 Instalación automática(Recomendado)
+Una vez hayamos descargado el programa solo tenemos que entrar en la carpeta "Proyecto" y ejecutar el script install.sh como sudo.
+```bash
+cd Proyecto
+```
+```bash
+sudo ./install
+```
+Aceptaríamos todo lo que nos va preguntando y, de esta forma, se instalará el programa de forma automática, a excepción de mysql que requiere la configuración manual previamente hecha.
+___
+#### 3.2 Instalación manual(No recomendado)
 
 Para realizar la instalación manual tenemos que instalar todos los componentes que necesita el programa, crear la estructura de carpetas que se va a necesitar y configurar los distintos archivos que necesita el programa:
 
 Se necesita:
 
+##### ssh - [openssh.com](https://www.openssh.com/)
+Entorno de ejecución para JavaScript que gestiona el funcionamiento de la webshell.
+```bash
+sudo apt install openssh-server
+```
 ##### nodejs - [nodejs.org](https://nodejs.org/es/)
 Entorno de ejecución para JavaScript que gestiona el funcionamiento de la webshell.
 ```bash
@@ -98,7 +122,7 @@ sudo apt install npm
 ##### forever - [github.com/foreversd](https://github.com/foreversd/forever#readme)
 Libería de nodejs para gestionar la ejecución de aplicaciones. 
 ```bash
-sudo npm install forever
+sudo npm install forever -g
 ```
 ##### sendmail - [proofpoint.com](https://www.proofpoint.com/us/products/email-protection/open-source-email-solution)
 Permite ejecutar y configurar de forma sencilla el envio de correos desde php.
@@ -177,21 +201,143 @@ sudo a2enssite proyecto.conf
 ```bash
 sudo service apache2 restart
 ```
+![configuracion apache](/images/instalacion/apache_conf.png)
 
 Hosts:
-- /etc/hosts
-PHP:
-- /etc/php/7.3/apache2/php.ini
-MYSQL:
-- /etc/proyecto/mysql/db_config.conf
-___
-#### 3.2 Instalación automática(Recomendado)
-Una vez hayamos descargado el programa solo tenemos que entrar en la carpeta "Proyecto" y ejecutar el script install.sh como sudo.
+- Obtenemos nuestra IP con el comando _hostname -I_
+- La añadimos al archivo /etc/hosts
 ```bash
-cd Proyecto
+hostname -I
 ```
 ```bash
-sudo ./install
+echo "IP  proyecto.local" >> /etc/hosts
 ```
+![/etc/hosts](/images/instalacion/hosts.png)
 
-De esta forma se instalará el programa de forma automática, a excepción de mysql que requiere la siguiente configuración manual:
+PHP:
+- Abrimos el archivo /etc/php/7.3/apache2/php.ini con el editor de texto que prefiramos y editamos las siguientes variables: 
+- upload_max_filesize: aumentamos su valor a 2048M, por ejemplo.
+- post_max_size: aumentamosn su valor a 2100M, por ejemplo.
+- extension=mysqli: eliminamos la _","_ del principio de línea
+![php.ini](/images/instalacion/php.png)
+
+MYSQL:
+- Editamos el archivo /etc/proyecto/mysql/db_config.conf con el editor que prefiramos para incluir la configuración que realizamos antes en mysql
+![mysql config](/images/instalacion/mysql_file.png)
+
+WEBSHELL:
+- Por último, habría que instalar la webshell y ponerla en marcha con forever
+```bash
+sudo npm install /var/www/webssh2/app/ 
+```
+```bash
+sudo forever start /var/www/webssh2/app/index.js
+```
+![webssh2 install](/images/instalacion/forever.png)
+___
+Con todo esto, la aplicación ya estaría operativa.
+___
+
+## Configuración clientes
+
+Para poder utilizar el programa es necesario que los clientes objetivos tengan habilitado una forma de comunicación.
+Para operar con los clientes Linux debe de estar habilitado un servidor ssh.
+Para operar con los clientes Windows se presentan 2 casos:
+- Windows workstation: podemos elegir entre SSH y WinRM
+- Windows Server: deben de tener habilitado un servidor ssh.
+
+___ 
+### Configuración clientes Windows
+___
+#### Configuración ssh
+___
+##### Workstation
+
+###### Windows 10
+Para instalar un servidor ssh en Windows 10 tenemos que ir a _"Aplicaciones"_, dentro del panel de configuración.
+
+![panel de configuración](/images/instalacion/config_windows.png)
+
+Características opcionales...
+
+![características opcionales](/images/instalacion/app_carac.png)
+
+Agregar una característica...
+
+![agregar característica](/images/instalacion/add_carac.png)
+
+Instalamos el servidor OpenSSH...
+
+![instalar OpenSSH](/images/instalacion/windows_10_openssh.png)
+
+Ahora solo tendríamos que configurar el servicio:
+- Abrimos una terminal de powershell como administrador y ejecutamos el siguiente comando para cambiar la shell predeterminada:
+```powershell
+New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -PropertyType String -Force
+```
+![cambiar shell](/images/instalacion/cambiar_shell.png)
+
+- Editamos el archivo _C:\ProgramData\ssh\shhd_config_, incluimos el nombre del usuario local con el que nos conectaremos y le indicamos el que use el puerto 22.
+![cambiar shell](/images/instalacion/windows_ssh_config.png)
+
+Puede que necesites configurar el firewall para permitir las conexiones por el puerto 22. Para hacerlo, debes ejecuar otro comando de powershell:
+```powershell
+New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH SSH Server' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22 -Program "C:\System32\OpenSSH\sshd.exe"
+```
+###### Windows 8/7
+
+La instalación de OpenSSH en Windows 7 y Windows 8 es la misma:
+- Descargamos el progama desde la siguiente URL y lo descomprimimos: [github.com/PowerShell/Win32-OpenSSH](https://github.com/PowerShell/Win32-OpenSSH/releases)
+- Abrimos una terminal en carpeta que acabamos de descomprimir y ejecutamos el siguiente comando:
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File install-sshd.ps1
+```
+- Por último, editamos el archivo de configuración y añadimos la regla en el firewall como hicimos con Windows 10.
+___
+##### Server
+
+###### Windows Server 2019
+La instalación de OpenSSH en Windows Server 2019 es la misma que haríamos en un Windows 10.
+
+###### Windows Server 2016/2012
+La instalación de OpenSSH en Windows Server 2016/2012 es la misma que haríamos en un Windows 7.
+
+#### Configuración WinRM
+
+##### Workstation
+
+###### Windows 10/8/7
+La instalación y configuración de WinRM es la misma para los 3 sistemas:
+- Abrimos una terminal de cmd como administradores.
+- Ejecutamos el siguiente comando para habilitar el servicio:
+```powershell
+winrm quickconfig
+```
+![configuracion winrm](/images/instalacion/winrm_1.png)
+
+- Ejecutamos los siguientes comandos para configurar el servicio:
+```powershell
+winrm set winrm/config/service/auth @{Basic="true"}
+```
+```powershell
+winrm set winrm/config/service @{AllowUnencrypted="true"}
+```
+```powershell
+winrm set winrm/config/client/auth @{Basic="true"}
+```
+```powershell
+winrm set winrm/config/client @{AllowUnencrypted="true"}
+```
+- Con los siguientes comandos podemos comprobar la configuración, debería de quedar de la siguiente manera:
+```powershell
+winrm get winrm/config/service
+```
+```powershell
+winrm get winrm/config/client
+```
+![Configuracion winrm](/images/instalacion/winrm_config.png)
+
+### Configuración clientes Linux
+#### Configuración ssh
+- Debian
+- Ubuntu
