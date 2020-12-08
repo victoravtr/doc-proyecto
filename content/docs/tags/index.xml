@@ -1,35 +1,35 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Tags - Etiqueta - Documentación</title>
-        <link>http://example.org/tags/</link>
+        <link>https://victoravtr.github.io/tags/</link>
         <description>Tags - Etiqueta - Documentación</description>
-        <generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>es</language><lastBuildDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</lastBuildDate><atom:link href="https://victoravtr.github.io/tags/" rel="self" type="application/rss+xml" /><item>
     <title>documentacion</title>
-    <link>http://example.org/tags/documentacion/</link>
+    <link>https://victoravtr.github.io/tags/documentacion/</link>
     <pubDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</pubDate>
     <author>Autor</author>
-    <guid>http://example.org/tags/documentacion/</guid>
+    <guid>https://victoravtr.github.io/tags/documentacion/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>guia</title>
-    <link>http://example.org/tags/guia/</link>
+    <link>https://victoravtr.github.io/tags/guia/</link>
     <pubDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</pubDate>
     <author>Autor</author>
-    <guid>http://example.org/tags/guia/</guid>
+    <guid>https://victoravtr.github.io/tags/guia/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>instalacion</title>
-    <link>http://example.org/tags/instalacion/</link>
+    <link>https://victoravtr.github.io/tags/instalacion/</link>
     <pubDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</pubDate>
     <author>Autor</author>
-    <guid>http://example.org/tags/instalacion/</guid>
+    <guid>https://victoravtr.github.io/tags/instalacion/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>uso</title>
-    <link>http://example.org/tags/uso/</link>
+    <link>https://victoravtr.github.io/tags/uso/</link>
     <pubDate>Wed, 02 Dec 2020 12:39:37 &#43;0100</pubDate>
     <author>Autor</author>
-    <guid>http://example.org/tags/uso/</guid>
+    <guid>https://victoravtr.github.io/tags/uso/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
